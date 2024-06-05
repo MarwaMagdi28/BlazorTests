@@ -1,0 +1,28 @@
+﻿<p>
+    <b>Name: </b><span>@CurrentContact.FirstName @CurrentContact.LastName</span> <br />
+    @if(DisplayEmail)
+    { 
+    <b>Email: </b><i>@CurrentContact.Email</i><br/>
+    }
+    @if(displayInfo)
+    {
+        <span>The Email address of @CurrentContact.FirstName @CurrentContact.LastName  is @CurrentContact.Email</span>
+    }
+    <br />
+    <button onclick="@(() => {displayInfo = !displayInfo;})">Show Info</button> <br/>
+    <button @onclick="@(() => {DeleteCurrentContact.InvokeAsync(CurrentContact);})">Delete</button>
+</p>
+
+@code 
+{
+    [Parameter]
+    public Contact CurrentContact { set; get; }
+
+    [Parameter]
+    public bool DisplayEmail { set; get; }
+
+    [Parameter]
+    public EventCallback<Contact> DeleteCurrentContact { set; get; }
+
+    private bool displayInfo = false;
+}

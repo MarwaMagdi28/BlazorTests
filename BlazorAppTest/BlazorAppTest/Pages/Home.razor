@@ -1,0 +1,89 @@
+﻿@page "/"
+@using BlazorAppTest.Pages.ContactComponents;
+
+<h1>Home Page</h1><br/>
+<ContactList Contacts="contacts">
+    <NullContacts>
+        <br />
+        <span> Contacts are loading ... </span>
+        <br />
+    </NullContacts>
+    <EmptyContacts>
+        <br />
+        <span> No Contacts to display </span>
+        <br />
+    </EmptyContacts>
+</ContactList>
+<br/>
+
+@* <MyTextbox placeholder="Placeholder 1" type="text" disabled="disabled"></MyTextbox> *@
+<MyTextbox @attributes="@MyTextboxAttributes"></MyTextbox>
+
+
+@* <PageTitle>Home</PageTitle>
+
+<h3>Hello, @username ... Welcome to <b> Application </b></h3>
+
+<p>Sum : @GetSum()</p>
+
+<button @onclick="ChangeName">Change Name with Fn</button>
+
+<button @onclick="@(() => { username = "Adham";})">Change Name with Var</button>
+
+@if(testNo == 1)
+{
+    <p>Num is 1</p>
+}
+else
+{
+    <p>Num is not 1</p>
+}
+
+@for (int i = 0; i < 10; i++)
+{
+    <p>Value of i is @i</p>
+}
+
+@foreach (var name in names)
+{
+    <i>@((MarkupString)name)</i>
+}
+
+@code
+{
+    private int testNo = 1;
+
+    private string username = "Marwa";
+
+    private List<string> names;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        names = new List<string>
+        {
+            "<b>Value 1</b>",
+            "Value 2",
+            "Value 3",
+            "<b>Value 4</b>",
+            "Value 5",
+            "Value 6",
+        };
+    }
+
+    private string GetUsername()
+    {
+        return username + " Magdi";    
+    }
+
+    private void ChangeName()
+    {
+        username = "Alaa";
+    }
+
+    private int GetSum()
+    {
+        return 2 + 8;
+    }
+
+} *@
